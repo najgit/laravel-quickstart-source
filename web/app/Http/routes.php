@@ -13,7 +13,7 @@
 
 use App\Task;
 use Illuminate\Http\Request;
-
+// Add Comment
 Route::get('/task/delall', function () {
 
     $tasks = Task::all();
