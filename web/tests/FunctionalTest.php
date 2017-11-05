@@ -14,7 +14,7 @@ class FunctionalTest extends TestCase
     {
         $this->dontSeeInDatabase('tasks', ['name' => 'Task 1'])
             ->post('/task', ['name' => 'Task 1'])
-            ->assertResponseStatus(308)
+            ->assertResponseStatus(302)
             ->seeInDatabase('tasks', ['name' => 'Task 1']);
     }
 
@@ -22,7 +22,7 @@ class FunctionalTest extends TestCase
     {
         $task = factory(Task::class)->create(['name' => 'Task 1']);
 
-        $taskId = 99999;//$task->id;
+        $taskId = $task->id;
 
         $this->seeInDatabase('tasks', ['name' => 'Task 1'])
             ->delete("/task/$taskId")
