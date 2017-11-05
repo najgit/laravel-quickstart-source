@@ -14,15 +14,15 @@ class FunctionalTest extends TestCase
     {
         $this->dontSeeInDatabase('tasks', ['name' => 'Task 1'])
             ->post('/task', ['name' => 'Task 1'])
-            ->assertResponseStatus(302)
-            ->seeInDatabase('tasks', ['name' => 'Task 111']);
+            ->assertResponseStatus(308)
+            ->seeInDatabase('tasks', ['name' => 'Task 1']);
     }
 
     public function testTaskDeleteApi_WhenDeleteTask_ExpectTaskHasDeleted()
     {
         $task = factory(Task::class)->create(['name' => 'Task 1']);
 
-        $taskId = $task->id;
+        $taskId = 99999;//$task->id;
 
         $this->seeInDatabase('tasks', ['name' => 'Task 1'])
             ->delete("/task/$taskId")
